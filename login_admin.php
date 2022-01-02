@@ -1,4 +1,55 @@
+<?php
+    
+        session_start();
 
+
+    $showError = false;   
+        
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+          
+
+    include 'dbconnect.php';  
+      $email = $_POST["email"];  
+      $password = $_POST["password"];
+      $sql = "Select * from admin where email='$email'";
+        
+        $result = mysqli_query($conn, $sql);
+       
+        $num = mysqli_num_rows($result); 
+      
+      if ($num<1){
+        $showError = "email or password incorrect"; 
+        
+      }
+      else{
+        
+        $sql2= "Select email,password from admin where email='$email'";
+        
+        $result = mysqli_query($conn, $sql2);
+        while ($row = $result->fetch_assoc()) {
+        
+        if (password_verify( $password,$row['password'])) {
+        
+      
+          
+                   header("Location: http://localhost/Online-Prescription/admin_dash.php");
+          exit();
+          }
+          
+          
+          
+          else{
+            echo "not matched"; 
+          }
+              
+
+    }
+        
+      }
+
+
+    }
+    ?>
 
 
 
@@ -22,15 +73,15 @@
         <form action="login_admin.php" method="post">
 
 <div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Email address</label>
 </div>
 <div class="form-floating">
-  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="password" class="form-control" name="password"id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Password</label>
   <br>
   <div class="d-grid gap-2">
-  <button type="button" class="btn btn-outline-secondary">Log In</button>
+  <button type="submit" class="btn btn-outline-secondary">Log In</button>
   </div>
   
   
