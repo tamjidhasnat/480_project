@@ -32,7 +32,7 @@
         
       
           
-                   header("Location: http://localhost/Online-Prescription/admin_dash.php");
+                   header("Location: http://localhost/480_project/admin_dash.php");
           exit();
           }
           

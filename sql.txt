@@ -1,0 +1,7 @@
+sql=
+for admin table{CREATE TABLE `prescription`.`admin` ( `id` INT NOT NULL AUTO_INCREMENT , `email` VARCHAR(30) NOT NULL , `password` VARCHAR(90) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;}
+
+for add data in admin={INSERT INTO `admin` (`id`, `email`, `password`) VALUES ('1', 'tamjid.hasnat@gmail.com', '$2y$10$PRfLW9EIr83/YmnRt5GQlO1dp2NCRXywB9TDZ2OpuUR3fgfD9KrZ2')}
+
+for doctor table={CREATE TABLE `prescription`.`doctor` ( `id` INT NOT NULL AUTO_INCREMENT , `email` VARCHAR(30) NOT NULL , `first_name` TEXT NOT NULL , `last_name` TEXT NOT NULL , `currently_working` TEXT NOT NULL , `designation` TEXT NOT NULL , `degrees` TEXT NOT NULL , `bmdc_no` TEXT NOT NULL , `phone_no` INT NOT NULL , `password` VARCHAR(99) NOT NULL DEFAULT '123456789' , `creation_date` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`, `email`(30))) ENGINE = InnoDB;
+}
