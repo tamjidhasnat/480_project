@@ -10,10 +10,34 @@
 
     include 'dbconnect.php';  
       $email = $_POST["email"];  
-     
+      $first_name= $_POST["f_name"];   
+      $last_name=$_POST["l_name"];   
+      $working=$_POST["working"]; 
+      $designation=$_POST["designation"];  
+      $bmdc_no=$_POST["bmdc"]; 
+      $phone_no=$_POST["phone"]; 
       $degree = $_POST["degree"];
-      $sql="";
+      $sql="SELECT email FROM `doctor` WHERE `email`='$email'";
+       $result = mysqli_query($conn, $sql);
+        
+        $num = mysqli_num_rows($result); 
 
+
+     
+
+        if($num == 0) {
+
+          $sql2="INSERT INTO `doctor` (`email`, `first_name`, `last_name`, `currently_working`, `designation`, `degrees`, `bmdc_no`, `phone_no`, `creation_date`) VALUES ('$email', '$first_name', '$last_name', '$working', '$designation', '$degree', '$bmdc_no', '$phone_no', current_timestamp())";
+
+          $result = mysqli_query($conn, $sql2);
+         header("Location: http://localhost/480_project/admin_dash.php");
+                           exit();
+
+        }
+        else
+          echo '<div class="alert alert-danger" role="alert">
+  Email Address is already in Database!
+</div>';
 
     }
     ?>

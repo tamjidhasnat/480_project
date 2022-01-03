@@ -1,3 +1,8 @@
+
+
+
+
+
 <head>
 <meta charset="utf-8">
 <meta name="width=device-width,initial-scale=1,shrink-to-fit=no">
@@ -20,7 +25,7 @@
 		 <div class="col text-center">
 		 
 		 <a href="create_doc.php" class="btn btn-secondary" role="button" data-bs-toggle="button">Create Doctor Account</a>
-		 <a href="admin.php" class="btn btn-secondary" role="button" data-bs-toggle="button">Doctor List</a>
+		 <a href="doctor_table.php" class="btn btn-secondary" role="button" data-bs-toggle="button">Doctor List</a>
 		 </div>
 
 
