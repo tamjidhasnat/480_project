@@ -1,3 +1,5 @@
+<html>
+<div style="background-image: url('bg/bg_create_doc.jpg');">
 <?php
     
         session_start();
@@ -13,25 +15,77 @@
       $first_name= $_POST["f_name"];   
       $last_name=$_POST["l_name"];   
       $working=$_POST["working"]; 
-      $designation=$_POST["designation"];  
+      
       $bmdc_no=$_POST["bmdc"]; 
       $phone_no=$_POST["phone"]; 
-      $degree = $_POST["degree"];
+     
       $sql="SELECT email FROM `doctor` WHERE `email`='$email'";
        $result = mysqli_query($conn, $sql);
         
         $num = mysqli_num_rows($result); 
 
 
-     
-
+     if (!isset($_POST['degree'])||!isset($_POST['designation'])){
+		echo '<div class="alert alert-danger" role="alert">
+			Designation or Degree is Null!
+				</div>';
+	
+                       
+		
+}
+ 
         if($num == 0) {
-
-          $sql2="INSERT INTO `doctor` (`email`, `first_name`, `last_name`, `currently_working`, `designation`, `degrees`, `bmdc_no`, `phone_no`, `creation_date`) VALUES ('$email', '$first_name', '$last_name', '$working', '$designation', '$degree', '$bmdc_no', '$phone_no', current_timestamp())";
+			$degree = $_POST["degree"];
+ $designation=$_POST["designation"];  
+			$password="123456789";
+			$hash = password_hash($password, 
+    									PASSWORD_DEFAULT);
+          $sql2="INSERT INTO `doctor` (`email`, `first_name`, `last_name`, `currently_working`, `designation`, `degrees`, `bmdc_no`, `phone_no`,`password`, `creation_date`) VALUES ('$email', '$first_name', '$last_name', '$working', '$designation', '$degree', '$bmdc_no', '$phone_no','$hash' ,current_timestamp())";
 
           $result = mysqli_query($conn, $sql2);
-         header("Location: http://localhost/480_project/admin_dash.php");
+         
+	
+                        				require 'phpmailer/PHPMailerAutoload.php';
+                    $mail= new PHPMailer;
+                    $mail->isSMTP();
+                    $mail->Host='smtp.gmail.com';
+                    $mail->Port=587;
+                    $mail->SMTPAuth=true;
+                    $mail->SMTPSecure='tls';
+
+
+                    $mail->Username='onlineprescription993@gmail.com';
+                    $mail->Password='qwertyuiop@1234567890';
+
+
+
+
+
+
+
+
+                    $mail->setFrom('onlineprescription993@gmail.com','Account Creation');
+
+                    $mail->addAddress($email);
+
+                    $mail->isHTML(true);
+
+                    $mail->Subject='Account Created';
+                    
+
+
+                    $mail->Body=  "Congrats your account has been created here is your email is  " . $email."  And default Password is 123456789 Please change your password after your first login" ;
+					
+                    if (!$mail->send()){
+                        echo "not sent";
+                    }
+                 
+
+					header("Location: http://localhost/480_project/admin_dash.php");
                            exit();
+
+
+
 
         }
         else
@@ -52,7 +106,7 @@
 
 
 </head>
-<div style="background-image: url('bg/bg_create_doc.jpg');">
+
 <div class="container h-10 ">
 
 
@@ -83,8 +137,8 @@
 
   <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Designation</label>
-  <select class="form-select" name="designation" id="inputGroupSelect01">
-    <option selected>Choose...</option>
+  <select class="form-select" name="designation" id="inputGroupSelect01"required>
+    <option value="" selected>Choose...</option>
     <option value="Assistant professor">Assistant professor</option>
     <option value="Associate professor">Associate professor</option>
     <option value="Professor">Professor</option>
@@ -93,21 +147,21 @@
 </div>
 
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-<label class="input-group-text"  for="inputGroupSelect01">Degrees</label>
-  <input type="checkbox" class="btn-check" id="btncheck1"name="degree" value="MS " autocomplete="off"required>
-  <label class="btn btn-outline-primary" for="btncheck1">MS</label>
+<label class="input-group-text"  for="inputGroupSelect01"required>Degrees</label>
+  <input type="radio" class="btn-check" id="btnradio1"name="degree" value="MS " autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio1">MS</label>
 
-  <input type="checkbox" class="btn-check" id="btncheck2" name="degree"value="FCPS " autocomplete="off">
-  <label class="btn btn-outline-primary" for="btncheck2">FCPS</label>
+  <input type="radio" class="btn-check" id="btnradio2" name="degree"value="FCPS " autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio2">FCPS</label>
 
-  <input type="checkbox" class="btn-check" id="btncheck3"name="degree" value="FRCS " autocomplete="off">
-  <label class="btn btn-outline-primary" for="btncheck3">FRCS</label>
+  <input type="radio" class="btn-check" id="btnradio3"name="degree" value="FRCS " autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio3">FRCS</label>
   
-<input type="checkbox" class="btn-check" id="btncheck4"name="degree" value="MRCS-surgery " autocomplete="off">
-  <label class="btn btn-outline-primary" for="btncheck4">MRCS-surgery</label>
+<input type="radio" class="btn-check" id="btnradio4"name="degree" value="MRCS-surgery " autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio4">MRCS-surgery</label>
   
-<input type="checkbox" class="btn-check" id="btncheck5" name="degree" value="FRCP " autocomplete="off">
-  <label class="btn btn-outline-primary" for="btncheck5">FRCP</label>
+<input type="radio" class="btn-check" id="btnradio5" name="degree" value="FRCP " autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio5">FRCP</label>
 
 
 </div>
@@ -130,3 +184,4 @@
 
 </div>
 </form>
+</html>

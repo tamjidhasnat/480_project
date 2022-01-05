@@ -1,40 +1,35 @@
-<!DOCTYPE html>
-<html>
 
+<html>
+<div style="background-image: url('bg/bg_admin.jpg');">
 <head>
   <title>Online Health-care</title>
-  <link rel="stylesheet" type="text/css" href="css/style2.css">
+  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
 </head>
 
-<body>
-	<header>
+
+
+
+<div class="container h-10 ">
+
+<div class="container">
+       
+       <a href="homepage.php" class="btn btn-secondary" aria-current="page">Home</a>
+      
+  
+    </div>
+
+
+<div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+		<h1 class="text-center text">Admin Panel</h1>
 		
+		 <div class="col text-center">
+		 
+		 <a href="login_admin.php" class="btn btn-secondary" role="button" data-bs-toggle="button">Login</a>
+		 
+		 </div>
 
-			<ul>
-				<li class="active"><a href="homepage.php">Home</a></li>
-				
-				
-				
-				
 
-			</ul>
-		</div>
-		
-
-		<div class="title">
-			<h1>Apollo Health Centre</h1>
-		</div><br>
-		<div class="mtitle">
-			<h4>Healthy does not mean expensive.</h>
-		</div>
-		
-		<div class="button">
-			<a href="login_admin.php" class="btn">Login</a> 
-			
-			
-		</div>
-
-	</header>
-
-</body>
+</div>
+</div>	
 </html>

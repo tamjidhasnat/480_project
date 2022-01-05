@@ -1,3 +1,5 @@
+<html>
+<div style="background-image: url('bg/bg_admin.jpg');">
 <?php
     
         session_start();
@@ -61,7 +63,7 @@
 
 
 </head>
-<div style="background-image: url('bg/bg_admin.jpg');">
+
 <div class="container h-10 ">
 
 
@@ -90,3 +92,4 @@
 </div>
 </div>
 </div>
+</html>
