@@ -143,7 +143,6 @@ $pdf->Cell(34 ,5,$usage_3,0,1);//end of line
 a:
 $pdf->Cell(189 ,10,'',0,1);//end of line
 
-$pdf->SetFont('Arial','B',12);
 $pdf->Cell(130 ,5,'Prescribed By:',0,1);
 $pdf->Cell(05 ,5,$doctor_name,0,0);
 

@@ -13,7 +13,7 @@
 <a class="btn btn-dark" href="doc_dash.php" role="button">back to dashboard</a>
  <?php
   session_start();
- $doctor_name=$_SESSION["doctor_name"];
+ 
 	echo "<table class='table table-hover table-dark'>";
   echo "<thead>";
    echo" <tr>";
@@ -31,7 +31,7 @@
 
    
     include 'dbconnect.php';  
-    $sql="SELECT * FROM `medicine` where `doc_name`='$doctor_name'";
+    $sql="SELECT * FROM `medicine`";
     $result=$conn->query($sql);
     if($result->num_rows>0){
     	while ($row=$result->fetch_assoc()){
